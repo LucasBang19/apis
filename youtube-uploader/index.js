@@ -1,6 +1,6 @@
 require('dotenv').config();
-const express  = require('express');
-const fs       = require('fs');
+const express    = require('express');
+const fs         = require('fs');
 const { google } = require('googleapis');
 
 const app = express();
@@ -68,7 +68,7 @@ app.post('/upload', async (req, res) => {
         status
       },
       media: {
-        body: fs.createReadStream(filePath)   // pode ser grande (stream)
+        body: fs.createReadStream(filePath)  // pode ser grande (stream)
       }
     });
 
@@ -76,8 +76,9 @@ app.post('/upload', async (req, res) => {
 
     res.json({
       success: true,
-      id:  videoId,
-      url: https://youtu.be/${videoId}
+      id:      videoId,
+      // CORRIGIDO: Adicionado crases e ${}
+      url: `https://youtu.be/$${videoId}`
     });
 
   } catch (err) {
@@ -89,5 +90,6 @@ app.post('/upload', async (req, res) => {
 // ────────── Inicializa servidor ───
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(YouTube-uploader listening on port ${PORT});
+  // CORRIGIDO: Adicionado crases
+  console.log(`YouTube-uploader listening on port ${PORT}`);
 });
